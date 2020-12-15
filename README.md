@@ -1,2 +1,6 @@
-# skeleton-java
-spring boot skeleton for light weight website.
+# neat spring skeleton
+
+for lightweight website
+
+pakage run `mvn -X clean package` , dont use it in idea
+
