@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{/css/global.css}" />
   <link rel="stylesheet" th:href="@{/css/login.css}" />
-  <title>Series of Problems</title>
+  <title>算数问题</title>
 </head>
 <body>
   <header class="header-section ">
@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="page-heading">
-              <h1>Series of Problem.</h1>
+              <h1>算数问题</h1>
                 <hr class="small">
             </div>
           </div>
@@ -23,19 +23,18 @@
       </div>
     </div>
     </header>
-<p>Hello sunx,</p>
-<p>Here are series of problems. You have to get all of them right</p>
-<h3 id="my-hobbies:6083a88ee3411b0d17ce02d738f69d47">Problem 3</h3>
-<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3593883707,2674855000&fm=26&gp=0.jpg" data-caption="" data-size="normal" data-rawwidth="300" data-rawheight="300" class="origin_image zh-lightbox-thumb" width="400" data-original="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3667631672,2289158741&fm=26&gp=0.jpg">
-<form th:action="@{/chris/problem02}" method="post">
-  <p>What is the book you never read?(please write in France)</p> 
-  <p><input type="text" name="bookUnread" /></p>
-  <p>你总共买过多少次水果？</p>
-  <p><input type="text" name="fruits" /></p>
-  <p>你的体重准确到克.</p>
-  <p><input type="text" name="times" /></p>
-  <p>How long will I love u?</p> 
-  <p><input type="text" name="forever" /></p>
+<p>求自然数从1乘到8100,即1*2*3*....8100的答案结果末尾0的个数。</p>
+<p>(hint,用数学方法可解。可从简单的开始.</p>
+  <p>比如从1乘到100，答案是</p>
+  <p>93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
+  </p>
+  <p>末尾0个数是24个。</p>
+    <p>1乘到1000末尾0是249个)</p>
+<h3 id="my-hobbies:6083a88ee3411b0d17ce02d738f69d47">Problem 5</h3>
+<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3348700695,2069009488&fm=26&gp=0.jpg" data-caption="" data-size="normal" data-rawwidth="300" data-rawheight="300" class="origin_image zh-lightbox-thumb" width="300" data-original="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3667631672,2289158741&fm=26&gp=0.jpg">
+<form th:action="@{/chris/problem04}" method="post">
+  <p>答案是多少</p>
+  <p><input type="text" name="answer" /></p>
   <input type="submit" value="Submit" />
 </form>
   <p style="color: #f5222d;" th:if="${errorMsg!=null}">oops,please try again</p>

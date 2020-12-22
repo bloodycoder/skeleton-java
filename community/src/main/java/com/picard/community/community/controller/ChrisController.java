@@ -5,12 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @Controller
 @RequestMapping("/chris")
 public class ChrisController {
     @RequestMapping(path="/welcome",method= RequestMethod.GET)
     public String getWelcome(Model model){
-        return "/app01/welcome01";
+        return "app01/welcome01";
     }
     @RequestMapping(path="/welcome",method= RequestMethod.POST)
     public String postWelcome(String nickname,Model model){
@@ -21,14 +24,14 @@ public class ChrisController {
             model.addAttribute("jumpPage","problem01");
             model.addAttribute("word1","you success finished the your first problem!");
             model.addAttribute("word2","click the linked below to continue.");
-            return "/app01/successPage";
+            return "app01/successPage";
         }
         model.addAttribute("errorMsg",1);
-        return "/app01/welcome01";
+        return "app01/welcome01";
     }
     @RequestMapping(path="/problem01",method= RequestMethod.GET)
     public String getProblem01(Model model){
-        return "/app01/problem1";
+        return "app01/problem1";
     }
     @RequestMapping(path="/problem01",method= RequestMethod.POST)
     public String postProblem01(String tryTimes,String firstTry,Model model){
@@ -43,18 +46,18 @@ public class ChrisController {
                 model.addAttribute("jumpPage","problem02");
                 model.addAttribute("word1","you success finished the your second problem!");
                 model.addAttribute("word2","click the linked below to continue.");
-                return "/app01/successPage";
+                return "app01/successPage";
             }
         }catch (Exception e){
             model.addAttribute("errorMsg",1);
-            return "/app01/problem1";
+            return "app01/problem1";
         }
         model.addAttribute("errorMsg",1);
-        return "/app01/problem1";
+        return "app01/problem1";
     }
     @RequestMapping(path="/problem02",method= RequestMethod.GET)
     public String getProblem02(Model model){
-        return "/app01/problem2";
+        return "app01/problem2";
     }
     @RequestMapping(path="/problem02",method= RequestMethod.POST)
     public String postProblem02(String bookUnread,String forever,Model model){
@@ -64,42 +67,78 @@ public class ChrisController {
             model.addAttribute("jumpPage", "problem03");
             model.addAttribute("word1", "you success finished the your second problem!");
             model.addAttribute("word2", "click the linked below to continue.");
-            return "/app01/successPage";
+            return "app01/successPage";
         }
         model.addAttribute("errorMsg",1);
-        return "/app01/problem2";
+        return "app01/problem2";
+    }
+    @RequestMapping(path="/problem04",method= RequestMethod.GET)
+    public String getProblem04(Model model){
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020,11,23,1,0);
+        if(date.before(calendar.getTime())){
+            return "app01/errorPage";
+        }
+        return "app01/problem4";
+    }
+    @RequestMapping(path="/problem04",method= RequestMethod.POST)
+    public String postProblem04(String answer,Model model){
+        answer = answer.trim().toLowerCase();
+        if (answer.equals("2020")) {
+            model.addAttribute("jumpPage", "problemFinal");
+            model.addAttribute("word1", "宝宝真是太聪明了！还有最后一道题，再接再厉");
+            model.addAttribute("word2", "click the linked below to continue.");
+            return "app01/successPage";
+        }
+        model.addAttribute("errorMsg",1);
+        return "app01/problem4";
     }
     @RequestMapping(path="/problem03",method= RequestMethod.GET)
     public String getProblem03(Model model){
-        return "/app01/problem3";
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020,11,22,1,0);
+        if(date.before(calendar.getTime())){
+            return "app01/errorPage";
+        }
+        return "app01/problem3";
     }
     @RequestMapping(path="/problem03",method= RequestMethod.POST)
     public String postProblem03(String money,Model model){
         money = money.trim().toLowerCase();
-        int value = Integer.parseInt(money);
-        if (value == 20) {
-            model.addAttribute("jumpPage", "problemFinal");
-            model.addAttribute("word1", "宝宝真是太聪明了！还有最后一道题，再接再厉");
-            model.addAttribute("word2", "click the linked below to continue.");
-            return "/app01/successPage";
+        try{
+            int value = Integer.parseInt(money);
+            if (value == 20) {
+                model.addAttribute("jumpPage", "problem04");
+                model.addAttribute("word1", "宝宝真棒！倒数第二题了，继续");
+                model.addAttribute("word2", "click the linked below to continue.");
+                return "app01/successPage";
+            }
+        }catch (Exception e){
+            model.addAttribute("errorMsg",1);
+            return "app01/problem3";
         }
         model.addAttribute("errorMsg",1);
-        return "/app01/problem3";
+        return "app01/problem3";
     }
     @RequestMapping(path="/problemFinal",method= RequestMethod.GET)
     public String getProblemFinal(Model model){
-        return "/app01/problem-final";
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020,11,24,1,0);
+        if(date.before(calendar.getTime())){
+            return "app01/errorPage";
+        }
+        return "app01/problem-final";
     }
     @RequestMapping(path="/problemFinal",method= RequestMethod.POST)
     public String postProblemFinal(String originPoem,Model model){
         originPoem = originPoem.trim().toLowerCase();
         if (originPoem.contains("world") && originPoem.contains("moon") && originPoem.contains("forever")) {
-            //model.addAttribute("jumpPage", "problemFinal");
-            //model.addAttribute("word1", "宝宝真是太聪明了！还有最后一道题，再接再厉");
-            //model.addAttribute("word2", "click the linked below to continue.");
             return "redirect:http://xylovesunx.xyz";
         }
         model.addAttribute("errorMsg",1);
-        return "/app01/problem-final";
+        return "app01/problem-final";
     }
 }
